@@ -1,15 +1,42 @@
-const express=require('express');
-const path=require('path');
+const path=require("path");
+const http=require("http");
+const express=require("express");
+const socketIO=require("socket.io");
+
 const publicPath=path.join(__dirname,'../public');
-const port=process.env.PORT || 3000;
+const port=process.env.PORT||3000;
+const app=express();
+var server=http.createServer(app);
+var io=socketIO(server);
+app.use(express.static(publicPath));
+
+io.on('connection',(socket)=>{
+console.log('NEW USER CONNECTED');
+// socket.emit('newMessage',{
+//     from:'pradeepthi',
+//     text:'whats going on?',
+//     createdAt:123234
+// });
+socket.on('createMessage',(message)=>{
+    console.log('createMessage',message);
+
+io.emit('newMessage',{
+    from:message.form,
+    text:message.text,
+    createdAt:new Date().getTime()
+});
+    
+});
+
+socket.on('disconnect',()=>{
+console.log("user disconnected");
+
+    })
+})
 
 
-// console.log(__dirname + '/../public');
-//console.log(publicPath);
+server.listen(port,()=>{
+    console.log(`server is up on ${port}`);
+})
 
- var app=express();
- app.use(express.static(publicPath));
- app.listen(port,()=>{
- console.log(`server is upon 3000 ${port}`);
-
- });
+console.log(publicPath);
