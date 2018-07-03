@@ -1,0 +1,51 @@
+<!--<p>
+  shoppinglist works!
+</p>-->
+<!--<div class="container">
+  <div class="row">
+    <div [ngClass]="['col-1']">
+     
+        <label>Name:</label>
+        <input type="text" name="name" placeholder="enter name"/>
+        <label>Amount:</label>
+        <input type="text" name="amount" placeholder="enter amount"/>
+   
+    </div>
+  </div>
+</div>-->
+<div class="container">
+  <form>
+    <div class="row">
+      <!--<div class="col-sm-1"></div>-->
+      <div class="form-group col-sm-4" style="margin-top:10px">
+        <label>Name</label>
+        <input type="text" name="name" class="form-control" placeholder="enter name" [(ngModel)]="name"/>
+      </div>
+      <div class="form-group col-sm-1" style="margin-top:10px">
+          <label>Amount</label>
+        <input type="text" name="amount" class="form-control" placeholder="enter amount" [(ngModel)]="amount"/>
+      </div>
+      <!--<table>
+        <tr><td *ngFor='let goal of goals'>{{goal}}</td></tr>
+      </table>-->
+       <div class="col-sm-6"></div>
+    </div>
+
+    
+ 
+    <!--<div class="buttons" style="margin-left:50px">-->
+    <button (click)="add()" type="submit" class="btn btn-success">ADD</button>
+     <button (click)="get()" type="submit" class="btn btn-success">GET</button>
+    <button type="reset" class="btn btn-primary">CLEAR</button>
+   
+    <!--</div>-->
+    <div class="row">
+      <div class="col-sm-12">
+         <table>
+        <tr><td style="border:1px s0lid black" *ngFor='let goal of goals'>{{goal.name}} {{goal.amount}}</td></tr>
+      </table>
+      </div>
+    </div>
+  </form>
+</div>
+<!--{{goal.name}} {{goal.amount}}-->
